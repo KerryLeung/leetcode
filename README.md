@@ -1,3 +1,3 @@
 # leetcode
-practice
-sdf sd
+practice code algrithom  
+prepare for new job interview
