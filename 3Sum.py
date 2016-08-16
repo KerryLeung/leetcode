@@ -7,33 +7,28 @@ class Solution(object):
         if len(nums) < 3:
             return []
         
-        def bin_search(array, start, end, target):
-            while start <= end:
-                mid = (start + end) / 2
-                if array[mid] > target:
-                    end = mid -1 
-                elif array[mid] == target:
-                    return mid
-                else:
-                    start = mid + 1
-            return -1
-        
         sum_val = 0
         num1 = sorted(nums)
         res_list = []
         i = 0
         while i < len(num1) - 2:
-            j = i + 1
-            while j < len(num1) - 1:
-                target_val = sum_val - num1[i] - num1[j]
-                pos = bin_search(num1, j+1, len(num1)-1, target_val)
-                if pos != -1:
-                    res=[num1[i], num1[j], num1[pos]]
-                    if sorted(res) not in res_list:
-                        res_list.append(sorted(res))
-                j += 1
+            s = i + 1
+            t = len(num1) -1
+            target_val = sum_val - num1[i]
+            while s < t:
+                t_sum = num1[s] + num1[t]
+                if t_sum > target_val:
+                    t -= 1
+                elif t_sum == target_val:
+                    res=[num1[i], num1[s], num1[t]]
+                    if res not in res_list:
+                        res_list.append(res)
+                    s += 1
+                    t -= 1
+                else:
+                    s += 1
             i += 1
-        
+  
         return res_list
                 
             
